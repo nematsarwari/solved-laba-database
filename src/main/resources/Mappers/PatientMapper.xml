@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.PatientsDAO">
+
+    <select id="getById">
+        select patient_id, first_name, last_name, hospitalID from Patients where patient_id = #{patient_id}
+    </select>
+
+    <insert id="insert" keyColumn="patient_id" keyProperty="patient_id" useGeneratedKeys="true">
+        insert into patients(first_name, last_name, hospitalID) values (#{first_name}, #{last_name}, #{hospitalID})
+    </insert>
+
+    <update id="update">
+        update Patients set first_name=#{patient.first_name}, last_name=#{patient.last_name}, hospitalID=#{patient.hospitalID} where patient_id = #{patient_id}
+    </update>
+
+    <delete id="delete">
+        delete from Patients where patient_id = #{patient_id}
+    </delete>
+
+    <resultMap id="PatientsResultMap" type="com.solvd.laba.domain.Patients" autoMapping="false">
+        <id column="patient_id" property="patient_id"/>
+        <result column="first_name" property="first_name"/>
+        <result column="last_name" property="last_name"/>
+        <result column="hospitalID" property="hospitalID"/>
+    </resultMap>
+
+</mapper>

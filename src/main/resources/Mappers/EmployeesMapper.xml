@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.EmployeesDAO">
+
+    <select id="getById">
+        select employees_id, first_name, last_name, department_id, hospital_id from employees where employees_id = #{employees_id}
+    </select>
+
+    <insert id="insert" keyColumn="employees_id" keyProperty="employees_id" useGeneratedKeys="true">
+        INSERT INTO employees (first_name, last_name, department_id, hospital_id) VALUES (#{first_name}, #{last_name}, #{department_id}, #{hospital_id})
+    </insert>
+
+    <update id="update">
+        update employees set first_name=#{employee.first_name}, last_name=#{employee.last_name}, department_id=#{employee.department_id}, hospital_id=#{employee.hospital_id} where employees_id = #{employees_id}
+    </update>
+
+    <delete id="delete">
+        delete from employees where employees_id = #{employees_id}
+    </delete>
+
+    <resultMap id="EmployeesResultMap" type="com.solvd.laba.domain.Employees" autoMapping="false">
+        <id column="employees_id" property="employees_id"/>
+        <result column="first_name" property="first_name"/>
+        <result column="last_name" property="last_name"/>
+        <result column="department_id" property="department_id"/>
+        <result column="hospital_id" property="hospital_id"/>
+    </resultMap>
+
+</mapper>

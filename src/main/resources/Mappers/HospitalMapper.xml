@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.HospitalDAO">
+    
+    <select id="getById">
+        select id, hospital_name from hospital where id = #{id}
+    </select>
+    
+    <insert id="insert" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        insert into hospital(hospital_name) values (#{hospital_name})
+    </insert>
+
+    <update id="update">
+        update hospital set hospital_name = #{hospital.hospital_name} where id = #{id}
+    </update>
+
+    <delete id="delete">
+        delete from hospital where id = #{id}
+    </delete>
+    
+    <resultMap id="HospitalResultMap" type="com.solvd.laba.domain.Hospital" autoMapping="false">
+        <id column="id" property="id"/>
+        <result column="hospital_name" property="hospital_name"/>
+    </resultMap>
+    
+</mapper>

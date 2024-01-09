@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.persistence.SalaryDAO">
+
+    <select id="getById">
+        select employee_id, salary from salary where employee_id = #{employe_id}
+    </select>
+
+    <insert id="insert" keyColumn="employee_id" keyProperty="employe_id" useGeneratedKeys="true">
+        insert into salary(salary) values (#{salary})
+    </insert>
+
+    <update id="update">
+        update salary set salary= #{salary.salary} where employee_id = #{employe_id}
+    </update>
+
+    <delete id="delete">
+        delete from Salary where employee_id = #{employe_id}
+    </delete>
+
+    <resultMap id="SalaryResultMap" type="com.solvd.laba.domain.Salary" autoMapping="false">
+        <id column="employee_id" property="employe_id"/>
+        <result column="salary" property="salary"/>
+    </resultMap>
+
+</mapper>
